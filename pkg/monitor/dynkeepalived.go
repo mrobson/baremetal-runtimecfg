@@ -108,6 +108,8 @@ func doesConfigChanged(curConfig, appliedConfig *config.Node) bool {
 	if curConfig.EnableUnicast {
 		if os.Getenv("IS_BOOTSTRAP") == "no" && len(curConfig.LBConfig.Backends) < 2 {
 			validConfig = false
+		} else if os.Getenv("EXP_SNO") == "yes" {
+			validConfig = true
 		}
 	}
 	log.WithFields(logrus.Fields{
